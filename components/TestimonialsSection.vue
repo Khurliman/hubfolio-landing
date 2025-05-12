@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Autoplay } from 'swiper/modules'
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/autoplay'
 
 interface Client {
     id: number
@@ -63,14 +65,13 @@ function onSlideChange(e: { activeIndex: number }): void {
                         :slidesPerView="1"
                         :spaceBetween="30"
                         :speed="1500"
-                        :autoplay="{
-                            delay: 5000,
-                        }"  
                         :loop="true"
                         :pagination="{
                             el: '.testimonials .swiper-pagination',
                             clickable: true
                         }"
+                        :modules="[Autoplay]"
+                        :autoplay="{ delay: 5000, disableOnInteraction: false }"
                         @slideChange="onSlideChange"
                     >
                         <swiper-slide
